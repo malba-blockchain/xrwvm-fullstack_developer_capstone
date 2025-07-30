@@ -15,7 +15,6 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from .populate import initiate
 
-
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
@@ -23,7 +22,7 @@ logger = logging.getLogger(__name__)
 # Create your views here.
 #############################
 
-# Create a `login_request` view to handle sign in request
+# Create a login_request view to handle sign in request
 @csrf_exempt
 def login_user(request):
     # Get username and password from request.POST dictionary
@@ -39,9 +38,15 @@ def login_user(request):
         data = {"userName": username, "status": "Authenticated"}
     return JsonResponse(data)
 
-# Create a `logout_request` view to handle sign out request
-# def logout_request(request):
-# ...
+# Create a logout_request view to handle sign out request
+@csrf_exempt
+def logout_request(request):
+    if request.method == 'GET':
+        logout(request)  # Terminate user session
+        data = {"userName": "", "status": "success"}  # Return empty username as expected by frontend
+        return JsonResponse(data)
+    else:
+        return JsonResponse({"error": "Method not allowed"}, status=405)
 
 # Create a `registration` view to handle sign up request
 # @csrf_exempt
