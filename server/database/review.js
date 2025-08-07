@@ -1,13 +1,12 @@
+/* jshint esversion: 6 */
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
-
 const reviews = new Schema({
-	id: {
+  id: {
     type: Number,
     required: true,
-	},
-	name: {
+  },
+  name: {
     type: String,
     required: true
   },
@@ -40,5 +39,4 @@ const reviews = new Schema({
     required: true
   },
 });
-
 module.exports = mongoose.model('reviews', reviews);

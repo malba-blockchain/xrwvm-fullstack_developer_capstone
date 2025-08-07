@@ -1,8 +1,7 @@
+/* jshint esversion: 6 */
 const { Int32 } = require('mongodb');
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
-
 const cars = new Schema({
 dealer_id: {
     type: Number,
@@ -29,5 +28,4 @@ mileage: {
     required: true
   }
 });
-
 module.exports = mongoose.model('cars', cars);
